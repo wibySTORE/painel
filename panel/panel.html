@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF EXECUTOR V2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="fire-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="panel-container">
+        <div class="header">
+            <h2>FF EXECUTOR V2</h2>
+            <div class="glow-line"></div>
+        </div>
+
+        <div class="feature-list">
+            <div class="feature-item">
+                <span>AIMLOCK 80%</span>
+                <label class="switch">
+                    <input type="checkbox" onchange="showNotif('AIMLOCK', this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="feature-item">
+                <span>AIM FOV ( BETA )</span>
+                <label class="switch">
+                    <input type="checkbox" onchange="showNotif('AIM FOV', this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="feature-item">
+                <span>AIM NECK ( ROOT ) </span>
+                <label class="switch">
+                    <input type="checkbox" onchange="showNotif('AIM NECK', this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="feature-item">
+                <span>BYPASS SAFE</span>
+                <label class="switch">
+                    <input type="checkbox" onchange="showNotif('BYPASS SAFE', this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="btn-small" onclick="vibrateAndGo('https://linktr.ee/gamesspeedshopp')">BUY FILE VIP</button>
+            <button class="btn-small" onclick="vibrateAndGo('https://www.whatsapp.com/channel/0029VailYTWL7UVbHGSsjM2B')">SALURAN WA</button>
+        </div>
+
+        <button class="btn-action" onclick="jalankanFitur()">AKTIFKAN FITUR</button>
+        <div class="status" id="statusText">FREE FIRE 1.120.1</div>
+    </div>
+
+    <div id="notification-container"></div>
+
+    <script src="script.js"></script>
+    <script src="anti.js"></script>
+    
+</body>
+</html>

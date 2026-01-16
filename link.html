@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Unduhan File</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .file-item:last-child { border-bottom: none; }
+        .file-item:hover { background-color: #f9f9f9; }
+
+        .file-info { display: flex; align-items: center; }
+        .file-icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .file-name {
+            font-weight: 600;
+            color: #444;
+            display: block;
+        }
+        .file-size {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .btn-download {
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-download:hover {
+            background-color: #218838;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+        }
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #dc3545;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📂 File Tersedia</h2>
+
+    <div class="file-list">
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">📄</span>
+                <div>
+                    <span class="file-name">Laporan_Tugas.pdf</span>
+                    <span class="file-size">2.4 MB</span>
+                </div>
+            </div>
+            <a href="files/laporan_tugas.pdf" class="btn-download" download>Download</a>
+        </div>
+
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🖼️</span>
+                <div>
+                    <span class="file-name">Foto_Kegiatan.jpg</span>
+                    <span class="file-size">1.1 MB</span>
+                </div>
+            </div>
+            <a href="files/foto_kegiatan.jpg" class="btn-download" download>Download</a>
+        </div>
+
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">📦</span>
+                <div>
+                    <span class="file-name">Software_Update.zip</span>
+                    <span class="file-size">15.0 MB</span>
+                </div>
+            </div>
+            <a href="files/software_update.zip" class="btn-download" download>Download</a>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="logout-link">← Keluar / Kembali</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - User Management</title>
+    <style>
+        :root {
+            --primary-red: #ff4655;
+            --dark-bg: #05070a;
+            --card-bg: rgba(20, 25, 31, 0.95);
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-red);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(255, 70, 85, 0.3);
+            text-align: center;
+        }
+
+        h3 {
+            color: var(--primary-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #0f1216;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--primary-red);
+        }
+
+        button.btn-tambah {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button.btn-tambah:hover {
+            box-shadow: 0 0 10px var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        h4 {
+            text-align: left;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid var(--primary-red);
+            transition: 0.2s;
+        }
+
+        li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-hapus {
+            background: rgba(220, 53, 69, 0.2);
+            color: #ff4d4d;
+            border: 1px solid #ff4d4d;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-hapus:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        /* Scrollbar Style */
+        ul::-webkit-scrollbar { width: 5px; }
+        ul::-webkit-scrollbar-thumb { background: var(--primary-red); border-radius: 10px; }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .back-link:hover { color: var(--primary-red); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>User Control</h3>
+    
+    <div class="input-group">
+        <input type="text" id="namaBaru" placeholder="Masukkan nama user...">
+        <button class="btn-tambah" onclick="tambahNama()">ADD</button>
+    </div>
+
+    <h4>Authorized Users:</h4>
+    <ul id="listNama"></ul>
+
+    <a href="index.html" class="back-link">← Kembali ke Login</a>
+</div>
+
+<script>
+(function(_0x10a700,_0x356788){const _0x5a3119=_0x77d0,_0x4b7fbe=_0x10a700();while(!![]){try{const _0xb2cd29=-parseInt(_0x5a3119(0x135))/0x1*(parseInt(_0x5a3119(0x14c))/0x2)+-parseInt(_0x5a3119(0x148))/0x3+-parseInt(_0x5a3119(0x139))/0x4+parseInt(_0x5a3119(0x147))/0x5+-parseInt(_0x5a3119(0x141))/0x6+parseInt(_0x5a3119(0x14d))/0x7+parseInt(_0x5a3119(0x134))/0x8*(parseInt(_0x5a3119(0x143))/0x9);if(_0xb2cd29===_0x356788)break;else _0x4b7fbe['push'](_0x4b7fbe['shift']());}catch(_0x520d16){_0x4b7fbe['push'](_0x4b7fbe['shift']());}}}(_0x3882,0x54d97));function tampilkanNama(){const _0x36fcc5=_0x77d0,_0x26f0e1=document[_0x36fcc5(0x13b)](_0x36fcc5(0x149)),_0x59e44e=JSON[_0x36fcc5(0x13a)](localStorage[_0x36fcc5(0x13f)](_0x36fcc5(0x137)))||[];_0x26f0e1[_0x36fcc5(0x146)]='',_0x59e44e[_0x36fcc5(0x144)]((_0x38ec3a,_0x5977c6)=>{const _0x2a0d6e=_0x36fcc5;_0x26f0e1[_0x2a0d6e(0x146)]+=_0x2a0d6e(0x13d)+_0x38ec3a+_0x2a0d6e(0x138)+_0x5977c6+_0x2a0d6e(0x136);});}function tambahNama(){const _0x37703b=_0x77d0,_0x529b7d=document['getElementById'](_0x37703b(0x13c)),_0x529b8e=_0x529b7d[_0x37703b(0x140)][_0x37703b(0x142)]();if(_0x529b8e==='')return;const _0x3545c3=JSON[_0x37703b(0x13a)](localStorage[_0x37703b(0x13f)](_0x37703b(0x137)))||[];_0x3545c3['push'](_0x529b8e),localStorage[_0x37703b(0x13e)](_0x37703b(0x137),JSON[_0x37703b(0x145)](_0x3545c3)),_0x529b7d['value']='',tampilkanNama();}function hapusNama(_0x2be97b){const _0x2e66e5=_0x77d0;if(confirm(_0x2e66e5(0x14b))){const _0x158a5c=JSON['parse'](localStorage[_0x2e66e5(0x13f)](_0x2e66e5(0x137)))||[];_0x158a5c[_0x2e66e5(0x14a)](_0x2be97b,0x1),localStorage[_0x2e66e5(0x13e)](_0x2e66e5(0x137),JSON['stringify'](_0x158a5c)),tampilkanNama();}}function _0x77d0(_0x173f3c,_0x4ed839){_0x173f3c=_0x173f3c-0x134;const _0x38826c=_0x3882();let _0x77d042=_0x38826c[_0x173f3c];return _0x77d042;}tampilkanNama();function _0x3882(){const _0x274e8d=['value','2801760iXNzCh','trim','13443579LYXhhY','forEach','stringify','innerHTML','2103905TEPLUV','1469985UsxwSl','listNama','splice','Hapus\x20user\x20ini?','642154OEAIjp','1861104eNbpEN','8Pdzmbl','2CxAPZN',')\x22>DELETE</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>','daftarNamaTambahan','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn-hapus\x22\x20onclick=\x22hapusNama(','934928YXeGsC','parse','getElementById','namaBaru','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','setItem','getItem'];_0x3882=function(){return _0x274e8d;};return _0x3882();}
+</script>
+</body>
+</html>

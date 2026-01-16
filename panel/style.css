@@ -1,0 +1,158 @@
+:root {
+    --primary-red: #ff4655;
+    --dark-bg: #05070a;
+    --card-bg: rgba(20, 25, 31, 0.9); /* Sedikit lebih gelap agar teks jelas */
+    --neon-glow: 0 0 15px rgba(255, 70, 85, 0.5);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+    margin: 0;
+    /* Gunakan min-height agar bisa di-scroll jika layar sangat pendek */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden; /* Mencegah geser kanan-kiri */
+    padding: 20px; /* Jarak aman dari pinggir layar HP */
+    box-sizing: border-box;
+}
+
+/* --- Animasi Partikel Api --- */
+.fire-container .particle {
+    position: absolute;
+    bottom: -20px;
+    width: 3px;
+    height: 3px;
+    background: var(--primary-red);
+    border-radius: 50%;
+    opacity: 0;
+    animation: rise 3s infinite linear;
+    box-shadow: 0 0 10px var(--primary-red);
+    z-index: 1;
+}
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-90vh) scale(2); opacity: 0; }
+}
+
+/* --- Panel Utama (Responsive Android) --- */
+.panel-container {
+    /* Gunakan width % agar mengikuti lebar layar HP */
+    width: 100%;
+    max-width: 340px; 
+    background: var(--card-bg);
+    border: 1px solid var(--primary-red);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Support browser Android lama */
+    box-shadow: var(--neon-glow);
+    z-index: 10;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: clamp(18px, 5vw, 22px); /* Font menyesuaikan layar */
+    letter-spacing: 3px;
+    color: var(--primary-red);
+    margin: 0;
+    text-shadow: var(--neon-glow);
+}
+
+.glow-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+    margin: 15px 0;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 8px 0;
+    padding: 12px 15px; /* Padding lebih ramping untuk Android */
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+/* --- Switch Neon --- */
+.switch { width: 40px; height: 20px; position: relative; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333; transition: .4s; border-radius: 20px;
+}
+input:checked + .slider { background-color: var(--primary-red); }
+.slider:before {
+    position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px;
+    background-color: white; transition: .4s; border-radius: 50%;
+}
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- Container Tombol Bersampingan --- */
+.button-row {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.btn-small {
+    flex: 1;
+    background: rgba(255, 70, 85, 0.1);
+    color: white;
+    border: 1px solid var(--primary-red);
+    padding: 12px 5px; /* Padding lebih tinggi agar nyaman di-tap jari */
+    border-radius: 8px;
+    font-size: 10px; /* Ukuran font aman untuk layar kecil */
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+/* --- Tombol Utama --- */
+.btn-action {
+    margin-top: 10px;
+    background: var(--primary-red);
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 70, 85, 0.3);
+}
+
+.status { margin-top: 15px; font-size: 10px; color: #666; letter-spacing: 1px; }
+
+/* --- Toast Notification Mobile --- */
+#notification-container { 
+    position: fixed; 
+    top: 10px; 
+    left: 50%; 
+    transform: translateX(-50%); /* Notifikasi di tengah atas untuk HP */
+    width: 90%;
+    z-index: 100;
+}
+.toast {
+    background: #1a1f26;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-left: 4px solid var(--primary-red);
+    border-radius: 6px;
+    font-size: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: slideDown 0.4s ease-out forwards;
+}
+
+@keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+

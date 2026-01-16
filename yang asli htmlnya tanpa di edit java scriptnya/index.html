@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - User Management</title>
+    <style>
+        :root {
+            --primary-red: #ff4655;
+            --dark-bg: #05070a;
+            --card-bg: rgba(20, 25, 31, 0.95);
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-red);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(255, 70, 85, 0.3);
+            text-align: center;
+        }
+
+        h3 {
+            color: var(--primary-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #0f1216;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--primary-red);
+        }
+
+        button.btn-tambah {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button.btn-tambah:hover {
+            box-shadow: 0 0 10px var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        h4 {
+            text-align: left;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid var(--primary-red);
+            transition: 0.2s;
+        }
+
+        li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-hapus {
+            background: rgba(220, 53, 69, 0.2);
+            color: #ff4d4d;
+            border: 1px solid #ff4d4d;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-hapus:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        /* Scrollbar Style */
+        ul::-webkit-scrollbar { width: 5px; }
+        ul::-webkit-scrollbar-thumb { background: var(--primary-red); border-radius: 10px; }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .back-link:hover { color: var(--primary-red); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>User Control</h3>
+    
+    <div class="input-group">
+        <input type="text" id="namaBaru" placeholder="Masukkan nama user...">
+        <button class="btn-tambah" onclick="tambahNama()">ADD</button>
+    </div>
+
+    <h4>Authorized Users:</h4>
+    <ul id="listNama"></ul>
+
+    <a href="index.html" class="back-link">← Kembali ke Login</a>
+</div>
+
+<script>
+    // FUNGSI JAVASCRIPT TETAP SAMA SEPERTI SEBELUMNYA
+    function tampilkanNama() {
+        const list = document.getElementById("listNama");
+        const daftar = JSON.parse(localStorage.getItem("daftarNamaTambahan")) || [];
+        list.innerHTML = "";
+        
+        daftar.forEach((nama, index) => {
+            list.innerHTML += `
+                <li>
+                    <span>${nama}</span>
+                    <button class="btn-hapus" onclick="hapusNama(${index})">DELETE</button>
+                </li>`;
+        });
+    }
+
+    function tambahNama() {
+        const input = document.getElementById("namaBaru");
+        const nama = input.value.trim();
+        if (nama === "") return;
+
+        const daftar = JSON.parse(localStorage.getItem("daftarNamaTambahan")) || [];
+        daftar.push(nama);
+        localStorage.setItem("daftarNamaTambahan", JSON.stringify(daftar));
+        
+        input.value = "";
+        tampilkanNama();
+    }
+
+    function hapusNama(index) {
+        if(confirm("Hapus user ini?")) {
+            const daftar = JSON.parse(localStorage.getItem("daftarNamaTambahan")) || [];
+            daftar.splice(index, 1);
+            localStorage.setItem("daftarNamaTambahan", JSON.stringify(daftar));
+            tampilkanNama();
+        }
+    }
+
+    tampilkanNama();
+</script>
+</body>
+</html>
